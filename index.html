@@ -21,6 +21,7 @@
             --accent-hover: #0ea5e9;
             --success-color: #4ade80;
             --progress-bg: #334155;
+            --experience-border: #64748b; /* Slate for history */
         }
 
         * {
@@ -118,7 +119,7 @@
             color: var(--accent-color);
         }
 
-        /* Roadmap Section */
+        /* Section Styling */
         .section-title {
             margin-top: 3rem;
             margin-bottom: 2rem;
@@ -133,13 +134,14 @@
             color: var(--accent-color);
         }
 
-        .roadmap {
+        .timeline-grid {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
 
-        .cert-card {
+        /* Card Styling */
+        .card {
             background-color: var(--card-bg);
             padding: 1.5rem;
             border-radius: 12px;
@@ -149,44 +151,64 @@
             transition: transform 0.2s ease;
         }
 
-        .cert-card:hover {
+        .card:hover {
             transform: translateX(5px);
         }
 
-        .cert-card.active {
+        /* Style specifically for Experience Cards */
+        .card.history {
+            border-left-color: var(--experience-border);
+        }
+
+        /* Style specifically for Active Cert Cards */
+        .card.active {
             border-left-color: var(--success-color);
         }
 
-        .cert-header {
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .cert-title {
+        .card-title {
             font-weight: 600;
             font-size: 1.1rem;
         }
 
-        .status-badge {
+        .tag {
             font-family: 'Fira Code', monospace;
             font-size: 0.75rem;
             padding: 0.25rem 0.75rem;
             border-radius: 50px;
-            background-color: rgba(74, 222, 128, 0.1);
-            color: var(--success-color);
-        }
-
-        .status-badge.pending {
             background-color: rgba(148, 163, 184, 0.1);
             color: var(--text-secondary);
         }
 
-        .cert-desc {
+        .tag.active {
+            background-color: rgba(74, 222, 128, 0.1);
+            color: var(--success-color);
+        }
+
+        .tag.highlight {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+        }
+
+        .card-desc {
             font-size: 0.9rem;
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
         }
 
         /* Progress Bar */
@@ -195,12 +217,13 @@
             border-radius: 4px;
             height: 6px;
             overflow: hidden;
+            margin-top: 0.5rem;
         }
 
         .progress-bar {
             height: 100%;
             background-color: var(--success-color);
-            width: 0%; /* Animated via JS or static */
+            width: 0%;
         }
 
         footer {
@@ -226,21 +249,65 @@
             <h1>Blake Handson</h1>
             <div class="subtitle">IT Consultant</div>
             <p class="bio">
-                Passionate about building secure, robust network infrastructures. 
-                Currently focused on expanding my expertise in network architecture, 
-                security operations, and ethical penetration testing.
+                Experienced IT Consultant with a background in risk, auditing, and technical implementation. 
+                Currently focused on expanding expertise in network architecture, security operations, and ethical penetration testing.
             </p>
 
             <div class="socials">
                 <a href="https://github.com/blakehfreelance-dev" class="btn btn-primary" target="_blank">
                     <i class="fab fa-github"></i> GitHub Profile
                 </a>
-                <!-- Add your LinkedIn link below if you have one, otherwise remove or leave as # -->
+                <!-- Add your LinkedIn link below if you have one -->
                 <a href="#" class="btn btn-outline" target="_blank">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
             </div>
         </header>
+
+        <!-- Experience & Education Section -->
+        <section>
+            <h2 class="section-title">
+                <i class="fas fa-graduation-cap"></i> Experience & Education
+            </h2>
+
+            <div class="timeline-grid">
+                
+                <!-- KPMG -->
+                <div class="card history">
+                    <div class="card-header">
+                        <div class="card-title">Consultant - Tech & Risk</div>
+                        <span class="tag">KPMG</span>
+                    </div>
+                    <p class="card-desc">
+                        Conducted internal and external audits, focusing on technology risk management, compliance frameworks, and IT controls.
+                    </p>
+                </div>
+
+                <!-- SAS Institute -->
+                <div class="card history">
+                    <div class="card-header">
+                        <div class="card-title">Associate Technical Consultant</div>
+                        <span class="tag">SAS Institute</span>
+                    </div>
+                    <p class="card-desc">
+                        Started as a Technical Graduate, progressing to Associate Consultant. Delivered technical solutions and analytics implementations for enterprise clients.
+                    </p>
+                </div>
+
+                <!-- Monash University -->
+                <div class="card history">
+                    <div class="card-header">
+                        <div class="card-title">Bachelor of IT & Systems</div>
+                        <span class="tag highlight">Monash University (2015)</span>
+                    </div>
+                    <p class="card-subtitle">x2 IBL Scholarships</p>
+                    <p class="card-desc">
+                        Completed degree with industry-based learning placements, recognized twice with IBL scholarships for academic and professional excellence.
+                    </p>
+                </div>
+
+            </div>
+        </section>
 
         <!-- Certification Roadmap -->
         <section>
@@ -248,41 +315,40 @@
                 <i class="fas fa-route"></i> Professional Roadmap
             </h2>
 
-            <div class="roadmap">
+            <div class="timeline-grid">
                 
                 <!-- Card 1: Current -->
-                <div class="cert-card active">
-                    <div class="cert-header">
-                        <div class="cert-title">CompTIA Network+</div>
-                        <span class="status-badge">IN PROGRESS</span>
+                <div class="card active">
+                    <div class="card-header">
+                        <div class="card-title">CompTIA Network+</div>
+                        <span class="tag active">IN PROGRESS</span>
                     </div>
-                    <p class="cert-desc">
+                    <p class="card-desc">
                         Currently pursuing certification to validate core networking skills, including configuration, troubleshooting, and management of wired and wireless networks.
                     </p>
-                    <!-- Visual progress indicator -->
                     <div class="progress-container">
                         <div class="progress-bar" style="width: 40%;"></div>
                     </div>
                 </div>
 
                 <!-- Card 2: Next -->
-                <div class="cert-card">
-                    <div class="cert-header">
-                        <div class="cert-title">CompTIA Security+</div>
-                        <span class="status-badge pending">NEXT GOAL</span>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">CompTIA Security+</div>
+                        <span class="tag">NEXT GOAL</span>
                     </div>
-                    <p class="cert-desc">
+                    <p class="card-desc">
                         Will focus on core security functions, threat assessment, risk management, and incident response to establish a strong security foundation.
                     </p>
                 </div>
 
                 <!-- Card 3: Future -->
-                <div class="cert-card">
-                    <div class="cert-header">
-                        <div class="cert-title">PWK & Proving Grounds Labs</div>
-                        <span class="status-badge pending">FUTURE TARGET</span>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">PWK & Proving Grounds Labs</div>
+                        <span class="tag">FUTURE TARGET</span>
                     </div>
-                    <p class="cert-desc">
+                    <p class="card-desc">
                         Planning to undertake Penetration Testing with Kali Linux (PWK) and actively practice in Proving Grounds labs to bridge the gap between theory and real-world offensive security.
                     </p>
                 </div>
