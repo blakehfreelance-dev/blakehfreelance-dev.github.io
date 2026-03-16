@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blake Handson | IT Consultant</title>
+    <!-- Using FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8; /* Light Blue */
+            --accent-hover: #0ea5e9;
+            --success-color: #4ade80;
+            --progress-bg: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--progress-bg);
+        }
+
+        .profile-icon {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* Social Links */
+        .socials {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--progress-bg);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Roadmap Section */
+        .section-title {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        .roadmap {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--text-secondary);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateX(5px);
+        }
+
+        .cert-card.active {
+            border-left-color: var(--success-color);
+        }
+
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .status-badge {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            background-color: rgba(74, 222, 128, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-badge.pending {
+            background-color: rgba(148, 163, 184, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .cert-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background-color: var(--progress-bg);
+            border-radius: 4px;
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%; /* Animated via JS or static */
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .socials { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <i class="fas fa-user-shield profile-icon"></i>
+            <h1>Blake Handson</h1>
+            <div class="subtitle">IT Consultant</div>
+            <p class="bio">
+                Passionate about building secure, robust network infrastructures. 
+                Currently focused on expanding my expertise in network architecture, 
+                security operations, and ethical penetration testing.
+            </p>
+
+            <div class="socials">
+                <a href="https://github.com/blakehfreelance-dev" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-github"></i> GitHub Profile
+                </a>
+                <!-- Add your LinkedIn link below if you have one, otherwise remove or leave as # -->
+                <a href="#" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </header>
+
+        <!-- Certification Roadmap -->
+        <section>
+            <h2 class="section-title">
+                <i class="fas fa-route"></i> Professional Roadmap
+            </h2>
+
+            <div class="roadmap">
+                
+                <!-- Card 1: Current -->
+                <div class="cert-card active">
+                    <div class="cert-header">
+                        <div class="cert-title">CompTIA Network+</div>
+                        <span class="status-badge">IN PROGRESS</span>
+                    </div>
+                    <p class="cert-desc">
+                        Currently pursuing certification to validate core networking skills, including configuration, troubleshooting, and management of wired and wireless networks.
+                    </p>
+                    <!-- Visual progress indicator -->
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 40%;"></div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Next -->
+                <div class="cert-card">
+                    <div class="cert-header">
+                        <div class="cert-title">CompTIA Security+</div>
+                        <span class="status-badge pending">NEXT GOAL</span>
+                    </div>
+                    <p class="cert-desc">
+                        Will focus on core security functions, threat assessment, risk management, and incident response to establish a strong security foundation.
+                    </p>
+                </div>
+
+                <!-- Card 3: Future -->
+                <div class="cert-card">
+                    <div class="cert-header">
+                        <div class="cert-title">PWK & Proving Grounds Labs</div>
+                        <span class="status-badge pending">FUTURE TARGET</span>
+                    </div>
+                    <p class="cert-desc">
+                        Planning to undertake Penetration Testing with Kali Linux (PWK) and actively practice in Proving Grounds labs to bridge the gap between theory and real-world offensive security.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Blake Handson. Crafted with focus.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
